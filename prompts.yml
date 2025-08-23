@@ -1,0 +1,6 @@
+application_modernization:
+  prompt: "Write a blog post about a recent trend in application modernization. Include a TL;DR, background, 3 practical tips, conclusion, and suggested next steps."
+artificial_intelligence:
+  prompt: "Write a blog post about a new development in artificial intelligence. Include a TL;DR, background, 3 practical tips, conclusion, and suggested next steps."
+cloud_migration:
+  prompt: "Write a blog post about a best practice in cloud migration. Include a TL;DR, background, 3 practical tips, conclusion, and suggested next steps."

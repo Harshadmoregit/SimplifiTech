@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.siteName }} - {{ page.title }}</title>
+  <meta name="description" content="{{ site.tagline }}">
+  <meta property="og:title" content="{{ page.title }} | {{ site.siteName }}">
+  <meta property="og:description" content="{{ page.excerpt | default: site.tagline }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ site.url }}/assets/images/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }} | {{ site.siteName }}">
+  <meta name="twitter:description" content="{{ page.excerpt | default: site.tagline }}">
+  <meta name="twitter:image" content="{{ site.url }}/assets/images/og-default.png">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  {% include head.html %}
+</head>
+<body>
+  {% include header.html %}
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-md-2 p-0 bg-light" id="about-col">
+        {% include about.html %}
+      </aside>
+      <nav class="col-md-2 p-0 bg-white" id="left-nav">
+        {% include nav.html %}
+      </nav>
+      <main class="col-md-6 p-3" id="main-content">
+        {{ content }}
+      </main>
+      <aside class="col-md-2 p-0 bg-light" id="profile-col">
+        {% include profile.html %}
+      </aside>
+    </div>
+  </div>
+  {% include footer.html %}
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

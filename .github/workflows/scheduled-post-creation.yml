@@ -1,0 +1,55 @@
+name: Scheduled Post Creation
+
+on:
+  schedule:
+    - cron: '0 7 * * 5' # Friday 07:00 UTC (Application Modernization)
+    - cron: '0 7 * * 6' # Saturday 07:00 UTC (Artificial Intelligence)
+    - cron: '0 7 * * 0' # Sunday 07:00 UTC (Cloud Migration)
+  workflow_dispatch:
+
+jobs:
+  generate-and-commit-post:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install js-yaml
+      - name: Determine category and prompt
+        id: setvars
+        run: |
+          DAY=$(date +%u)
+          if [ "$DAY" = "5" ]; then
+            CATEGORY="Application Modernization"
+            PROMPT=$(npx js-yaml prompts.yml | grep 'application_modernization:' -A 1 | tail -n 1 | sed 's/  prompt: //')
+          elif [ "$DAY" = "6" ]; then
+            CATEGORY="Artificial Intelligence"
+            PROMPT=$(npx js-yaml prompts.yml | grep 'artificial_intelligence:' -A 1 | tail -n 1 | sed 's/  prompt: //')
+          elif [ "$DAY" = "7" ] || [ "$DAY" = "0" ]; then
+            CATEGORY="Cloud Migration"
+            PROMPT=$(npx js-yaml prompts.yml | grep 'cloud_migration:' -A 1 | tail -n 1 | sed 's/  prompt: //')
+          else
+            echo "Not a scheduled day. Exiting." && exit 0
+          fi
+          echo "category=$CATEGORY" >> $GITHUB_OUTPUT
+          echo "prompt=$PROMPT" >> $GITHUB_OUTPUT
+      - name: Generate post
+        run: |
+          node scripts/generate-post.js --category="$CATEGORY" --prompt="$PROMPT"${{ env.OPENAI_API_KEY && ' --use-openai' || '' }}
+        env:
+          CATEGORY: ${{ steps.setvars.outputs.category }}
+          PROMPT: ${{ steps.setvars.outputs.prompt }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: Commit and push post
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add _posts/*.md
+          git commit -m "Automated post: $CATEGORY" || echo "No changes to commit"
+          git push

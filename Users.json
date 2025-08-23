@@ -1,0 +1,12 @@
+[
+  {
+    "username": "demo@example.com",
+    "password": "password123",
+    "displayName": "Demo User"
+  },
+  {
+    "username": "admin@simplifitech.com",
+    "password": "adminpass",
+    "displayName": "Admin User"
+  }
+]
