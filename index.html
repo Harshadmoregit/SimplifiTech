@@ -13,7 +13,7 @@ title: Home
             {% assign appmod_posts = site.categories['application-modernization'] | sort: 'date' | reverse %}
             {% for post in appmod_posts %}
             <li class="nav-item mb-1">
-              <a class="nav-link" href="{{ post.url | uri_escape }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -24,7 +24,7 @@ title: Home
             {% assign ai_posts = site.categories['artificial-intelligence'] | sort: 'date' | reverse %}
             {% for post in ai_posts %}
             <li class="nav-item mb-1">
-              <a class="nav-link" href="{{ post.url | uri_escape }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -35,7 +35,7 @@ title: Home
             {% assign cloud_posts = site.categories['cloud-migration'] | sort: 'date' | reverse %}
             {% for post in cloud_posts %}
             <li class="nav-item mb-1">
-              <a class="nav-link" href="{{ post.url | uri_escape }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -47,3 +47,9 @@ title: Home
     </section>
   </div>
 </div>
+<script>
+// After login, always redirect to /SimplifiTech/index.html
+if (window.location.pathname === '/login.html' && localStorage.getItem('simplifitech_session')) {
+  window.location.href = '/SimplifiTech/index.html';
+}
+</script>
