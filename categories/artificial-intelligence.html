@@ -4,9 +4,10 @@ title: Artificial Intelligence
 ---
 <h2>Artificial Intelligence Posts</h2>
 <div class="row">
-  {% assign posts = site.categories['Artificial Intelligence'] | sort: 'date' | reverse %}
-  {% if posts %}
-    {% for post in posts %}
+  {% assign posts = site.categories['Artificial Intelligence'] %}
+  {% if posts and posts.size > 0 %}
+    {% assign sorted_posts = posts | sort: 'date' | reverse %}
+    {% for post in sorted_posts %}
     <div class="col-md-12 mb-3">
         <div class="card">
         <div class="card-body">

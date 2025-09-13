@@ -4,9 +4,10 @@ title: Application Modernization
 ---
 <h2>Application Modernization Posts</h2>
 <div class="row">
-  {% assign posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
-  {% if posts %}
-    {% for post in posts %}
+  {% assign posts = site.categories['Application Modernization'] %}
+  {% if posts and posts.size > 0 %}
+    {% assign sorted_posts = posts | sort: 'date' | reverse %}
+    {% for post in sorted_posts %}
     <div class="col-md-12 mb-3">
         <div class="card">
         <div class="card-body">
