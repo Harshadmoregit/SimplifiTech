@@ -9,7 +9,7 @@
 </header>
 <nav class="main-nav bg-white w-100 border-bottom py-2">
   <div class="container-fluid">
-    <div class="d-flex flex-row align-items-center">
+    <div class="d-flex flex-row align-items-center" id="main-nav-links">
       <a class="nav-link text-primary px-2" href="/about.html">About</a>
       <a class="nav-link text-primary px-2" href="/categories/application-modernization.html">Application Modernization</a>
       <a class="nav-link text-primary px-2" href="/categories/artificial-intelligence.html">Artificial Intelligence</a>
@@ -19,3 +19,9 @@
     </div>
   </div>
 </nav>
+<script>
+  if (window.location.pathname === '/login.html') {
+    var navLinks = document.getElementById('main-nav-links');
+    if (navLinks) navLinks.style.display = 'none';
+  }
+</script>

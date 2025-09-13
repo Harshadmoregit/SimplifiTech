@@ -2,24 +2,74 @@
 layout: main
 title: Home
 ---
+<script>
+if (!localStorage.getItem('simplifitech_session')) {
+  window.location.href = '/login.html';
+}
+</script>
 <div class="container-fluid">
   <div class="row">
     <aside class="col-md-3 bg-light p-3" style="min-height:80vh; border-radius:1rem 0 0 1rem;">
       <h5 class="mb-3">All Posts</h5>
-      <ul class="nav flex-column" id="post-list">
-        {% assign all_posts = site.posts | sort: 'date' | reverse %}
-        {% for post in all_posts %}
-        <li class="nav-item mb-2">
-          <a class="nav-link post-link" href="#" data-post-id="post-{{ forloop.index }}">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-      </ul>
+      <div id="category-post-list">
+        <div class="mb-4">
+          <strong>Application Modernization</strong>
+          <ul class="nav flex-column ms-2">
+            {% assign appmod_posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
+            {% for post in appmod_posts %}
+            <li class="nav-item mb-1">
+              <a class="nav-link post-link" href="#" data-post-id="appmod-{{ forloop.index }}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="mb-4">
+          <strong>Artificial Intelligence</strong>
+          <ul class="nav flex-column ms-2">
+            {% assign ai_posts = site.categories['Artificial Intelligence'] | sort: 'date' | reverse %}
+            {% for post in ai_posts %}
+            <li class="nav-item mb-1">
+              <a class="nav-link post-link" href="#" data-post-id="ai-{{ forloop.index }}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="mb-4">
+          <strong>Cloud Migration</strong>
+          <ul class="nav flex-column ms-2">
+            {% assign cloud_posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
+            {% for post in cloud_posts %}
+            <li class="nav-item mb-1">
+              <a class="nav-link post-link" href="#" data-post-id="cloud-{{ forloop.index }}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     </aside>
     <section class="col-md-9 p-4" id="post-content-area" style="min-height:80vh; border-radius:0 1rem 1rem 0; background:#fff;">
       <div id="post-content-placeholder" class="text-muted">Select a post to view its content.</div>
-      {% assign all_posts = site.posts | sort: 'date' | reverse %}
-      {% for post in all_posts %}
-      <div id="post-{{ forloop.index }}" class="post-content d-none">
+      {% assign appmod_posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
+      {% for post in appmod_posts %}
+      <div id="appmod-{{ forloop.index }}" class="post-content d-none">
+        <h2>{{ post.title }}</h2>
+        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
+        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
+        {{ post.content }}
+      </div>
+      {% endfor %}
+      {% assign ai_posts = site.categories['Artificial Intelligence'] | sort: 'date' | reverse %}
+      {% for post in ai_posts %}
+      <div id="ai-{{ forloop.index }}" class="post-content d-none">
+        <h2>{{ post.title }}</h2>
+        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
+        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
+        {{ post.content }}
+      </div>
+      {% endfor %}
+      {% assign cloud_posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
+      {% for post in cloud_posts %}
+      <div id="cloud-{{ forloop.index }}" class="post-content d-none">
         <h2>{{ post.title }}</h2>
         <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
         <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
