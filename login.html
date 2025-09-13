@@ -1,0 +1,34 @@
+---
+layout: main
+title: Login
+---
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-4">
+    <div class="card mt-5">
+      <div class="card-body">
+        <h3 class="card-title mb-4">Login</h3>
+        <form id="login-form">
+          <input id="login-username-page" class="form-control mb-3" placeholder="Email">
+          <input id="login-password-page" type="password" class="form-control mb-3" placeholder="Password">
+          <div id="login-error-page" class="text-danger mb-2"></div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById('login-form').onsubmit = function(e) {
+  e.preventDefault();
+  var username = document.getElementById('login-username-page').value;
+  var password = document.getElementById('login-password-page').value;
+  var users = JSON.parse(localStorage.getItem('simplifitech_users') || '[]');
+  var user = users.find(u => u.username === username && u.password === password);
+  if (user) {
+    localStorage.setItem('simplifitech_session', JSON.stringify(user));
+    window.location.href = '/';
+  } else {
+    document.getElementById('login-error-page').textContent = 'Invalid credentials.';
+  }
+};
+</script>

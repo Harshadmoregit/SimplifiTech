@@ -1,8 +1,9 @@
 <header class="site-header py-3 bg-primary text-white">
-  <div class="container-fluid d-flex flex-column align-items-center">
+  <div class="container-fluid d-flex flex-column align-items-center position-relative">
     <div class="d-flex align-items-center justify-content-center w-100 mb-2">
       <img src="/assets/images/simplify-icon.svg" alt="SimplifiTech Logo" style="height: 48px; width: 48px; margin-right: 1rem; filter: brightness(0) invert(1); display: inline-block;">
       <span class="h2 mb-0 fw-bold text-center flex-grow-1">Welcome to SimplifiTech</span>
+      <div id="header-username-banner" class="position-absolute end-0 top-0 me-3 mt-2" style="display:none;"></div>
     </div>
   </div>
 </header>
@@ -13,6 +14,8 @@
       <a class="nav-link text-primary px-2" href="/categories/application-modernization.html">Application Modernization</a>
       <a class="nav-link text-primary px-2" href="/categories/artificial-intelligence.html">Artificial Intelligence</a>
       <a class="nav-link text-primary px-2" href="/categories/cloud-migration.html">Cloud Migration</a>
+      <a class="nav-link text-primary px-2 ms-auto" href="/login.html" id="login-link" style="display:none;">Login</a>
+      <a class="nav-link text-danger px-2" href="/logout.html" id="logout-link" style="display:none;">Logout</a>
     </div>
   </div>
 </nav>

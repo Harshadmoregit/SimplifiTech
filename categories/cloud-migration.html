@@ -3,6 +3,7 @@ layout: main
 title: Cloud Migration
 ---
 <h2>Cloud Migration Posts</h2>
+<button class="btn btn-success mb-3 d-none" id="new-post-btn-cloud" type="button"><span style="font-weight:bold;">+</span> Create New Post</button>
 <div class="row">
   {% assign posts = site.categories['Cloud Migration'] %}
   {% if posts and posts.size > 0 %}
@@ -27,4 +28,10 @@ title: Cloud Migration
     <p>No posts found in this category.</p>
   {% endif %}
 </div>
-<button class="btn btn-success mb-3" id="new-post-btn-cloud" type="button"><span style="font-weight:bold;">+</span> Create New Post</button>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var session = localStorage.getItem('simplifitech_session');
+    var btn = document.getElementById('new-post-btn-cloud');
+    if (session && btn) btn.classList.remove('d-none');
+  });
+</script>

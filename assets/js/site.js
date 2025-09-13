@@ -114,8 +114,26 @@ function logout() {
   renderProfilePanel();
 }
 
+function updateHeaderUserBanner() {
+  var session = getSession();
+  var banner = document.getElementById('header-username-banner');
+  var loginLink = document.getElementById('login-link');
+  var logoutLink = document.getElementById('logout-link');
+  if (session && banner) {
+    banner.style.display = 'block';
+    banner.innerHTML = '<span class="badge bg-info text-dark" style="font-size:1rem;">' + (session.displayName || session.username) + '</span>';
+    if (loginLink) loginLink.style.display = 'none';
+    if (logoutLink) logoutLink.style.display = 'inline-block';
+  } else if (banner) {
+    banner.style.display = 'none';
+    if (loginLink) loginLink.style.display = 'inline-block';
+    if (logoutLink) logoutLink.style.display = 'none';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   renderProfilePanel();
+  updateHeaderUserBanner();
   // New Post UI logic for category pages
   function showNewPostModal(category) {
     const html = `<div class="modal" tabindex="-1" id="newPostModal" style="display:block; background:rgba(0,0,0,0.5);">

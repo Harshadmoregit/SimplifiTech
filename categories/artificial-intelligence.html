@@ -27,3 +27,10 @@ title: Artificial Intelligence
     <p>No posts found in this category.</p>
   {% endif %}
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var session = localStorage.getItem('simplifitech_session');
+    var btn = document.getElementById('new-post-btn-ai');
+    if (session && btn) btn.classList.remove('d-none');
+  });
+</script>
