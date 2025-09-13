@@ -60,30 +60,18 @@ function getPostUrlFromLocation() {
 document.addEventListener('DOMContentLoaded', function() {
   var iframe = document.getElementById('post-iframe');
   var placeholder = document.getElementById('post-content-placeholder');
-  function setupPostLinks() {
-    document.querySelectorAll('.post-link').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var url = this.getAttribute('href');
-        // Always open in iframe, even if user opens in new tab
-        iframe.src = url;
-        iframe.style.display = 'block';
-        placeholder.style.display = 'none';
-        history.pushState({ post: url }, '', url);
-      });
-      // Prevent default for middle click or ctrl+click
-      link.addEventListener('mousedown', function(e) {
-        if (e.button === 1 || e.ctrlKey) {
-          e.preventDefault();
-        }
-      });
-    });
-  }
-  setupPostLinks();
-  // Show more logic for each category
-  function showMore(category, posts, listId, btnId) {
-  // ...existing code...
-  // Posts data for show more (injected by Jekyll)
+  // Use event delegation for all .post-link clicks
+  document.getElementById('category-post-list').addEventListener('click', function(e) {
+    var link = e.target.closest('.post-link');
+    if (link) {
+      e.preventDefault();
+      var url = link.getAttribute('href');
+      iframe.src = url;
+      iframe.style.display = 'block';
+      placeholder.style.display = 'none';
+      history.pushState({ post: url }, '', url);
+    }
+  });
   // ...existing code...
   // If user lands directly on a post URL, load it in iframe
   var postUrl = getPostUrlFromLocation();
