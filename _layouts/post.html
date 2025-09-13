@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-<article class="blog-post">
+<article class="blog-post" style="margin-top:0;">
   <header>
     <h1>{{ page.title }}</h1>
     <p class="text-muted">{{ page.date | date: "%B %d, %Y" }} | {{ page.category }} | by {{ page.author }}</p>
@@ -21,3 +21,12 @@ layout: main
     {{ content }}
   </section>
 </article>
+<script>
+// Hide parent header if loaded in iframe
+if (window.self !== window.top) {
+  var header = document.querySelector('.site-header');
+  if (header) header.style.display = 'none';
+  var nav = document.querySelector('.main-nav');
+  if (nav) nav.style.display = 'none';
+}
+</script>
