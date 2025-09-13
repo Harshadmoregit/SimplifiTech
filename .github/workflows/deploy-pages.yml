@@ -9,6 +9,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     permissions:
       id-token: write # Required for OIDC
       pages: write    # Required to deploy to GitHub Pages
