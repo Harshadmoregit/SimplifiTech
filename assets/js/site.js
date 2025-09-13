@@ -116,6 +116,57 @@ function logout() {
 
 document.addEventListener('DOMContentLoaded', function() {
   renderProfilePanel();
+  // New Post UI logic for category pages
+  function showNewPostModal(category) {
+    const html = `<div class="modal" tabindex="-1" id="newPostModal" style="display:block; background:rgba(0,0,0,0.5);">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Create New Post - ${category}</h5></div>
+        <div class="modal-body">
+          <input id="newpost-title" class="form-control mb-2" placeholder="Title">
+          <input id="newpost-prompt" class="form-control mb-2" placeholder="Prompt (summary)">
+          <textarea id="newpost-content" class="form-control mb-2" rows="6" placeholder="Content (Markdown supported)"></textarea>
+          <div id="newpost-error" class="text-danger"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" onclick="saveNewPost('${category}')">Publish (Demo)</button>
+          <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+      </div></div></div></div>`;
+    document.body.insertAdjacentHTML('beforeend', html);
+  }
+
+  window.saveNewPost = function(category) {
+    const title = document.getElementById('newpost-title').value.trim();
+    const prompt = document.getElementById('newpost-prompt').value.trim();
+    const content = document.getElementById('newpost-content').value.trim();
+    if (!title || !prompt || !content) {
+      document.getElementById('newpost-error').textContent = 'All fields are required.';
+      return;
+    }
+    // Demo: Save to localStorage (not persistent)
+    const postsKey = 'simplifitech_demo_posts';
+    const posts = JSON.parse(localStorage.getItem(postsKey) || '[]');
+    const today = new Date().toISOString().slice(0,10);
+    posts.unshift({
+      title,
+      prompt,
+      content,
+      category,
+      date: today
+    });
+    localStorage.setItem(postsKey, JSON.stringify(posts));
+    closeModal();
+    alert('Post saved locally (demo only). Refresh to see it again.');
+  };
+
+  // Attach button listeners for each category page
+  const btnAppMod = document.getElementById('new-post-btn-appmod');
+  if (btnAppMod) btnAppMod.onclick = function() { showNewPostModal('Application Modernization'); };
+  const btnAI = document.getElementById('new-post-btn-ai');
+  if (btnAI) btnAI.onclick = function() { showNewPostModal('Artificial Intelligence'); };
+  const btnCloud = document.getElementById('new-post-btn-cloud');
+  if (btnCloud) btnCloud.onclick = function() { showNewPostModal('Cloud Migration'); };
+
   if (window.ADMIN_PAGE) {
     const session = getSession();
     if (!session) {
