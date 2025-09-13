@@ -32,64 +32,66 @@ title: Login
   </div>
 </div>
 <script>
-// Redirect to /login.html if not logged in and not already on login page
-if (!localStorage.getItem('simplifitech_session') && window.location.pathname === '/') {
-  window.location.href = '/login.html';
-}
-// Always sync Users.json to localStorage if not present
-function syncUsers(cb) {
-  if (!localStorage.getItem('simplifitech_users')) {
-    fetch('/Users.json').then(r => r.json()).then(users => {
-      localStorage.setItem('simplifitech_users', JSON.stringify(users));
-      if (cb) cb();
+document.addEventListener('DOMContentLoaded', function() {
+  // Redirect to /login.html if not logged in and not already on login page
+  if (!localStorage.getItem('simplifitech_session') && window.location.pathname === '/') {
+    window.location.href = '/login.html';
+  }
+  function showAlert(msg) {
+    alert(msg);
+    var err = document.getElementById('login-error-page');
+    if (err) err.textContent = msg;
+  }
+  function doLogin() {
+    var username = document.getElementById('login-username-page').value;
+    var password = document.getElementById('login-password-page').value;
+    showAlert('Attempting login for: ' + username);
+    fetch('/Users.json').then(function(r) {
+      if (!r.ok) throw new Error('Could not load Users.json');
+      return r.json();
+    }).then(function(users) {
+      showAlert('Loaded users: ' + JSON.stringify(users));
+      var user = users.find(u => u.username === username && u.password === password);
+      showAlert('User found: ' + JSON.stringify(user));
+      if (user) {
+        localStorage.setItem('simplifitech_session', JSON.stringify(user));
+        window.location.href = '/';
+      } else {
+        showAlert('Invalid credentials.');
+      }
+    }).catch(function(e) {
+      showAlert('Login error: ' + e.message);
     });
-  } else {
-    if (cb) cb();
   }
-}
-function doLogin() {
-  var username = document.getElementById('login-username-page').value;
-  var password = document.getElementById('login-password-page').value;
-  fetch('/Users.json').then(r => r.json()).then(function(users) {
-    var user = users.find(u => u.username === username && u.password === password);
-    alert('user==>' + user);
-    alert('users==>' + users);
-    if (user) {
-      localStorage.setItem('simplifitech_session', JSON.stringify(user));
-      window.location.href = '/';
-    } else {
-      document.getElementById('login-error-page').textContent = 'Invalid credentials.';
+  document.getElementById('login-form').onsubmit = function(e) {
+    e.preventDefault();
+    doLogin();
+  };
+  document.getElementById('signup-form').onsubmit = function(e) {
+    e.preventDefault();
+    var username = document.getElementById('signup-username-page').value;
+    var password = document.getElementById('signup-password-page').value;
+    var displayName = document.getElementById('signup-displayName-page').value;
+    var users = JSON.parse(localStorage.getItem('simplifitech_users') || '[]');
+    if (users.find(u => u.username === username)) {
+      document.getElementById('signup-error-page').textContent = 'User already exists.';
+      return;
     }
-  });
-}
-document.getElementById('login-form').onsubmit = function(e) {
-  e.preventDefault();
-  doLogin();
-};
-document.getElementById('signup-form').onsubmit = function(e) {
-  e.preventDefault();
-  var username = document.getElementById('signup-username-page').value;
-  var password = document.getElementById('signup-password-page').value;
-  var displayName = document.getElementById('signup-displayName-page').value;
-  var users = JSON.parse(localStorage.getItem('simplifitech_users') || '[]');
-  if (users.find(u => u.username === username)) {
-    document.getElementById('signup-error-page').textContent = 'User already exists.';
-    return;
-  }
-  var user = { username, password, displayName };
-  users.push(user);
-  localStorage.setItem('simplifitech_users', JSON.stringify(users));
-  localStorage.setItem('simplifitech_session', JSON.stringify(user));
-  window.location.href = '/';
-};
-document.getElementById('show-signup-link').onclick = function(e) {
-  e.preventDefault();
-  document.getElementById('login-form').style.display = 'none';
-  document.getElementById('signup-form').style.display = 'block';
-};
-document.getElementById('show-login-link').onclick = function(e) {
-  e.preventDefault();
-  document.getElementById('signup-form').style.display = 'none';
-  document.getElementById('login-form').style.display = 'block';
-};
+    var user = { username, password, displayName };
+    users.push(user);
+    localStorage.setItem('simplifitech_users', JSON.stringify(users));
+    localStorage.setItem('simplifitech_session', JSON.stringify(user));
+    window.location.href = '/';
+  };
+  document.getElementById('show-signup-link').onclick = function(e) {
+    e.preventDefault();
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'block';
+  };
+  document.getElementById('show-login-link').onclick = function(e) {
+    e.preventDefault();
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+  };
+});
 </script>
