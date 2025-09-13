@@ -5,6 +5,7 @@ title: Cloud Migration
 <h2>Cloud Migration Posts</h2>
 <div class="row">
   {% assign posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
+  {% if posts %}
   {% for post in posts %}
   <div class="col-md-12 mb-3">
     <div class="card">
@@ -21,4 +22,7 @@ title: Cloud Migration
     </div>
   </div>
   {% endfor %}
+  {% else %}
+  <p>No posts found in this category.</p>
+  {% endif %}
 </div>
