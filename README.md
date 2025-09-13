@@ -1,5 +1,9 @@
 # SimplifiTech
 
+**Warning:** This static site uses only client-side authentication and is not secure for sensitive or private data. If hosted on GitHub Pages or any static host, all content is technically public and can be accessed or bypassed by disabling JavaScript or inspecting the site files. Do not use for confidential information.
+
+---
+
 Modern apps. Smarter AI. Cloud ready.
 
 A static, markdown-driven blog for GitHub Pages with automated post generation, demo client-side auth, and admin prompt editing.

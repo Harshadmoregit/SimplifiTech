@@ -15,38 +15,13 @@ if (!localStorage.getItem('simplifitech_session')) {
         {% assign posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
         {% for post in posts %}
         <li class="nav-item mb-2">
-          <a class="nav-link post-link" href="#" data-post-id="post-{{ forloop.index }}">{{ post.title }}</a>
+          <a class="nav-link post-link" href="{{ post.url }}">{{ post.title }}</a>
         </li>
         {% endfor %}
       </ul>
     </aside>
     <section class="col-md-9 p-4" id="post-content-area" style="min-height:80vh; border-radius:0 1rem 1rem 0; background:#fff;">
       <div id="post-content-placeholder" class="text-muted">Select a post to view its content.</div>
-      {% assign posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
-      {% for post in posts %}
-      <div id="post-{{ forloop.index }}" class="post-content d-none">
-        <h2>{{ post.title }}</h2>
-        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
-        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
-        {{ post.content }}
-      </div>
-      {% endfor %}
     </section>
   </div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.post-link').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var id = this.getAttribute('data-post-id');
-      document.querySelectorAll('.post-content').forEach(function(pc) { pc.classList.add('d-none'); });
-      var post = document.getElementById(id);
-      if (post) {
-        post.classList.remove('d-none');
-        document.getElementById('post-content-placeholder').style.display = 'none';
-      }
-    });
-  });
-});
-</script>

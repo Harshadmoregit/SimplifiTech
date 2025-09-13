@@ -18,7 +18,7 @@ if (!localStorage.getItem('simplifitech_session')) {
             {% assign appmod_posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
             {% for post in appmod_posts %}
             <li class="nav-item mb-1">
-              <a class="nav-link post-link" href="#" data-post-id="appmod-{{ forloop.index }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -29,7 +29,7 @@ if (!localStorage.getItem('simplifitech_session')) {
             {% assign ai_posts = site.categories['Artificial Intelligence'] | sort: 'date' | reverse %}
             {% for post in ai_posts %}
             <li class="nav-item mb-1">
-              <a class="nav-link post-link" href="#" data-post-id="ai-{{ forloop.index }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -40,7 +40,7 @@ if (!localStorage.getItem('simplifitech_session')) {
             {% assign cloud_posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
             {% for post in cloud_posts %}
             <li class="nav-item mb-1">
-              <a class="nav-link post-link" href="#" data-post-id="cloud-{{ forloop.index }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -49,49 +49,6 @@ if (!localStorage.getItem('simplifitech_session')) {
     </aside>
     <section class="col-md-9 p-4" id="post-content-area" style="min-height:80vh; border-radius:0 1rem 1rem 0; background:#fff;">
       <div id="post-content-placeholder" class="text-muted">Select a post to view its content.</div>
-      {% assign appmod_posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
-      {% for post in appmod_posts %}
-      <div id="appmod-{{ forloop.index }}" class="post-content d-none">
-        <h2>{{ post.title }}</h2>
-        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
-        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
-        {{ post.content }}
-      </div>
-      {% endfor %}
-      {% assign ai_posts = site.categories['Artificial Intelligence'] | sort: 'date' | reverse %}
-      {% for post in ai_posts %}
-      <div id="ai-{{ forloop.index }}" class="post-content d-none">
-        <h2>{{ post.title }}</h2>
-        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
-        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
-        {{ post.content }}
-      </div>
-      {% endfor %}
-      {% assign cloud_posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
-      {% for post in cloud_posts %}
-      <div id="cloud-{{ forloop.index }}" class="post-content d-none">
-        <h2>{{ post.title }}</h2>
-        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
-        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
-        {{ post.content }}
-      </div>
-      {% endfor %}
     </section>
   </div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.post-link').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var id = this.getAttribute('data-post-id');
-      document.querySelectorAll('.post-content').forEach(function(pc) { pc.classList.add('d-none'); });
-      var post = document.getElementById(id);
-      if (post) {
-        post.classList.remove('d-none');
-        document.getElementById('post-content-placeholder').style.display = 'none';
-      }
-    });
-  });
-});
-</script>

@@ -9,6 +9,10 @@ layout: main
       <span class="badge bg-primary">{{ page.category }}</span>
       {% for tag in page.tags %}<span class="badge bg-secondary">{{ tag }}</span>{% endfor %}
     </div>
+    <div class="mb-2">
+      <input type="text" class="form-control form-control-sm d-inline-block" style="width:70%;max-width:350px;" value="{{ page.url | absolute_url }}" readonly onclick="this.select()">
+      <span class="small text-muted ms-2">Share this post</span>
+    </div>
     <div class="social-share">
       {% include share.html %}
     </div>
