@@ -31,6 +31,12 @@ title: Login
 if (!localStorage.getItem('simplifitech_session') && window.location.pathname === '/') {
   window.location.href = '/login.html';
 }
+// Always sync Users.json to localStorage if not present
+if (!localStorage.getItem('simplifitech_users')) {
+  fetch('/Users.json').then(r => r.json()).then(users => {
+    localStorage.setItem('simplifitech_users', JSON.stringify(users));
+  });
+}
 document.getElementById('login-form').onsubmit = function(e) {
   e.preventDefault();
   var username = document.getElementById('login-username-page').value;
