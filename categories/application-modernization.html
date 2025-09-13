@@ -12,7 +12,7 @@ if (!localStorage.getItem('simplifitech_session')) {
     <aside class="col-md-3 bg-light p-3" style="min-height:80vh; border-radius:1rem 0 0 1rem;">
       <h5 class="mb-3">Application Modernization Posts</h5>
       <ul class="nav flex-column" id="post-list">
-        {% assign posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
+        {% assign posts = site.categories['application-modernization'] | sort: 'date' | reverse %}
         {% for post in posts %}
         <li class="nav-item mb-2">
           <a class="nav-link post-link" href="{{ post.url }}">{{ post.title }}</a>

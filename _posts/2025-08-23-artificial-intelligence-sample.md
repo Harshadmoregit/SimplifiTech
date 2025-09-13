@@ -1,7 +1,7 @@
 ---
 title: "AI in 2025: Smarter, Faster, Everywhere"
 date: 2025-08-23
-category: Artificial Intelligence
+category: artificial-intelligence
 tags: [ai, trends, 2025]
 author: SimplifiTech Team
 excerpt: "Explore the latest trends in AI and how they're shaping the future of technology."

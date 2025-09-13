@@ -1,7 +1,7 @@
 ---
 title: "Modernizing Legacy Apps: A Practical Guide"
 date: 2025-08-22
-category: Application Modernization
+category: application-modernization
 tags: [modernization, legacy, apps]
 author: SimplifiTech Team
 excerpt: "A hands-on guide to modernizing legacy applications for today's cloud-native world."

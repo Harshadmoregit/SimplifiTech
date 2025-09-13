@@ -1,7 +1,7 @@
 ---
 title: "Cloud Migration Basics"
 date: 2025-09-13
-category: Cloud Migration
+category: cloud-migration
 tags: [cloud, migration, basics]
 author: SimplifiTech Team
 excerpt: "A simple guide to getting started with cloud migration."

@@ -1,7 +1,7 @@
 ---
 title: "Modernize Your Legacy Apps"
 date: 2025-09-13
-category: Application Modernization
+category: application-modernization
 tags: [modernization, legacy, cloud]
 author: SimplifiTech Team
 excerpt: "How to start modernizing your legacy applications for the cloud."

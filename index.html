@@ -10,7 +10,7 @@ title: Home
         <div class="mb-4">
           <strong>Application Modernization</strong>
           <ul class="nav flex-column ms-2">
-            {% assign appmod_posts = site.categories['Application Modernization'] | sort: 'date' | reverse %}
+            {% assign appmod_posts = site.categories['application-modernization'] | sort: 'date' | reverse %}
             {% for post in appmod_posts %}
             <li class="nav-item mb-1">
               <a class="nav-link post-link" href="{{ post.url }}">{{ post.title }}</a>
@@ -21,7 +21,7 @@ title: Home
         <div class="mb-4">
           <strong>Artificial Intelligence</strong>
           <ul class="nav flex-column ms-2">
-            {% assign ai_posts = site.categories['Artificial Intelligence'] | sort: 'date' | reverse %}
+            {% assign ai_posts = site.categories['artificial-intelligence'] | sort: 'date' | reverse %}
             {% for post in ai_posts %}
             <li class="nav-item mb-1">
               <a class="nav-link post-link" href="{{ post.url }}">{{ post.title }}</a>
@@ -32,7 +32,7 @@ title: Home
         <div class="mb-4">
           <strong>Cloud Migration</strong>
           <ul class="nav flex-column ms-2">
-            {% assign cloud_posts = site.categories['Cloud Migration'] | sort: 'date' | reverse %}
+            {% assign cloud_posts = site.categories['cloud-migration'] | sort: 'date' | reverse %}
             {% for post in cloud_posts %}
             <li class="nav-item mb-1">
               <a class="nav-link post-link" href="{{ post.url }}">{{ post.title }}</a>
