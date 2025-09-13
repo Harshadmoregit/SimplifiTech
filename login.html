@@ -52,6 +52,8 @@ function doLogin() {
   var password = document.getElementById('login-password-page').value;
   fetch('/Users.json').then(r => r.json()).then(function(users) {
     var user = users.find(u => u.username === username && u.password === password);
+    alert('user==>' + user);
+    alert('users==>' + users);
     if (user) {
       localStorage.setItem('simplifitech_session', JSON.stringify(user));
       window.location.href = '/';
