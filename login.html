@@ -50,21 +50,19 @@ function syncUsers(cb) {
 function doLogin() {
   var username = document.getElementById('login-username-page').value;
   var password = document.getElementById('login-password-page').value;
-  alert ('username=> ' + username + ' password=> ' + password);
-  var users = JSON.parse(localStorage.getItem('simplifitech_users') || '[]');
-  alert ('users=> ' + JSON.stringify(users));
-  var user = users.find(u => u.username === username && u.password === password);
-  alert ('user=> ' + JSON.stringify(user));
-  if (user) {
-    localStorage.setItem('simplifitech_session', JSON.stringify(user));
-    window.location.href = '/';
-  } else {
-    document.getElementById('login-error-page').textContent = 'Invalid credentials.';
-  }
+  fetch('/Users.json').then(r => r.json()).then(function(users) {
+    var user = users.find(u => u.username === username && u.password === password);
+    if (user) {
+      localStorage.setItem('simplifitech_session', JSON.stringify(user));
+      window.location.href = '/';
+    } else {
+      document.getElementById('login-error-page').textContent = 'Invalid credentials.';
+    }
+  });
 }
 document.getElementById('login-form').onsubmit = function(e) {
   e.preventDefault();
-  syncUsers(doLogin);
+  doLogin();
 };
 document.getElementById('signup-form').onsubmit = function(e) {
   e.preventDefault();
