@@ -3,7 +3,10 @@
     <div class="d-flex align-items-center justify-content-center w-100 mb-2">
       <img src="/assets/images/simplify-icon.svg" alt="SimplifiTech Logo" style="height: 48px; width: 48px; margin-right: 1rem; filter: brightness(0) invert(1); display: inline-block;">
       <span class="h2 mb-0 fw-bold text-center flex-grow-1">Welcome to SimplifiTech</span>
-      <div id="header-username-banner" class="position-absolute end-0 top-0 me-3 mt-2" style="display:none;"></div>
+      <div id="header-username-banner" class="position-absolute end-0 top-0 me-3 mt-2" style="display:none;">
+        <span id="header-username" class="badge bg-info text-dark" style="font-size:1rem;"></span>
+        <a href="/logout.html" id="header-logout-btn" class="btn btn-sm btn-outline-light ms-2" style="display:none;">Logout</a>
+      </div>
     </div>
   </div>
 </header>
@@ -16,8 +19,21 @@
   </div>
 </nav>
 <script>
-  if (window.location.pathname === '/login.html') {
-    var navLinks = document.getElementById('main-nav-links');
-    if (navLinks) navLinks.style.display = 'none';
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.self !== window.top) return; // Don't show in iframe
+  var session = localStorage.getItem('simplifitech_session');
+  var banner = document.getElementById('header-username-banner');
+  var usernameSpan = document.getElementById('header-username');
+  var logoutBtn = document.getElementById('header-logout-btn');
+  if (session) {
+    var user = JSON.parse(session);
+    banner.style.display = 'block';
+    usernameSpan.textContent = user.displayName || user.username;
+    logoutBtn.style.display = 'inline-block';
+  } else {
+    banner.style.display = 'none';
+    usernameSpan.textContent = '';
+    logoutBtn.style.display = 'none';
   }
+});
 </script>

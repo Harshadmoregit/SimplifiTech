@@ -3,6 +3,9 @@ layout: main
 title: Home
 ---
 <div class="container-fluid">
+{% assign appmod_posts = site.categories['application-modernization'] | sort: 'date' | reverse %}
+{% assign ai_posts = site.categories['artificial-intelligence'] | sort: 'date' | reverse %}
+{% assign cloud_posts = site.categories['cloud-migration'] | sort: 'date' | reverse %}
   <div class="row">
     <aside class="col-md-3 bg-light p-3" style="min-height:80vh; border-radius:1rem 0 0 1rem;">
       <h5 class="mb-3">All Posts</h5>
@@ -10,7 +13,6 @@ title: Home
         <div class="mb-4">
           <strong>Application Modernization</strong>
           <ul class="nav flex-column ms-2">
-            {% assign appmod_posts = site.categories['application-modernization'] | sort: 'date' | reverse %}
             {% for post in appmod_posts %}
             <li class="nav-item mb-1">
               <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
@@ -21,7 +23,6 @@ title: Home
         <div class="mb-4">
           <strong>Artificial Intelligence</strong>
           <ul class="nav flex-column ms-2">
-            {% assign ai_posts = site.categories['artificial-intelligence'] | sort: 'date' | reverse %}
             {% for post in ai_posts %}
             <li class="nav-item mb-1">
               <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
@@ -32,7 +33,6 @@ title: Home
         <div class="mb-4">
           <strong>Cloud Migration</strong>
           <ul class="nav flex-column ms-2">
-            {% assign cloud_posts = site.categories['cloud-migration'] | sort: 'date' | reverse %}
             {% for post in cloud_posts %}
             <li class="nav-item mb-1">
               <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
@@ -51,9 +51,7 @@ title: Home
 <script>
 function getPostUrlFromLocation() {
   var path = window.location.pathname;
-  // If on / or /index.html, no post
   if (path === '/' || path.endsWith('/index.html')) return null;
-  // If path looks like a post, return it
   if (/\/SimplifiTech\/(application-modernization|artificial-intelligence|cloud-migration)\//.test(path)) {
     return path;
   }
@@ -62,16 +60,24 @@ function getPostUrlFromLocation() {
 document.addEventListener('DOMContentLoaded', function() {
   var iframe = document.getElementById('post-iframe');
   var placeholder = document.getElementById('post-content-placeholder');
-  document.querySelectorAll('.post-link').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var url = this.getAttribute('href');
-      iframe.src = url;
-      iframe.style.display = 'block';
-      placeholder.style.display = 'none';
-      history.pushState({ post: url }, '', url);
+  function setupPostLinks() {
+    document.querySelectorAll('.post-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var url = this.getAttribute('href');
+        iframe.src = url;
+        iframe.style.display = 'block';
+        placeholder.style.display = 'none';
+        history.pushState({ post: url }, '', url);
+      });
     });
-  });
+  }
+  setupPostLinks();
+  // Show more logic for each category
+  function showMore(category, posts, listId, btnId) {
+  // ...existing code...
+  // Posts data for show more (injected by Jekyll)
+  // ...existing code...
   // If user lands directly on a post URL, load it in iframe
   var postUrl = getPostUrlFromLocation();
   if (postUrl) {

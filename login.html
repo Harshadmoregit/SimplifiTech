@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
       var user = users.find(u => u.username === username && u.password === password);
       showAlert('User found: ' + JSON.stringify(user));
       if (user) {
-        localStorage.setItem('simplifitech_session', JSON.stringify(user));
-        window.location.href = '/';
+  localStorage.setItem('simplifitech_session', JSON.stringify(user));
+  window.location.href = '/SimplifiTech/index';
       } else {
         showAlert('Invalid credentials.');
       }
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     users.push(user);
     localStorage.setItem('simplifitech_users', JSON.stringify(users));
     localStorage.setItem('simplifitech_session', JSON.stringify(user));
-    window.location.href = '/';
+  window.location.href = '/SimplifiTech/index';
   };
   document.getElementById('show-signup-link').onclick = function(e) {
     e.preventDefault();
