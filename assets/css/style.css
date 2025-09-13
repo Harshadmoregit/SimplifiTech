@@ -1,19 +1,98 @@
-body { background: #f8f9fa; }
-.site-header { background: #0d6efd; color: #fff; }
-.site-header h1 { font-size: 2.5rem; }
-.site-header .lead { font-size: 1.2rem; }
-#about-col, #profile-col { min-height: 100vh; }
-#left-nav { border-right: 1px solid #eee; }
-#main-content { background: #fff; min-height: 80vh; }
-.card { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-.share-links .btn { margin-right: 0.25rem; margin-bottom: 0.25rem; }
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #222;
+}
+.site-header {
+  background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(13,110,253,0.08);
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+.site-header h1 {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+}
+.site-header .lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.95;
+}
+#about-col, #profile-col {
+  min-height: 100vh;
+  background: #f4f7fa;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+#left-nav {
+  border-right: 1px solid #e0e7ef;
+  background: #fff;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+#main-content {
+  background: #fff;
+  min-height: 80vh;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  padding: 2rem 2.5rem;
+}
+.card {
+  box-shadow: 0 2px 12px rgba(13,110,253,0.07);
+  border-radius: 1rem;
+  border: none;
+  margin-bottom: 1.5rem;
+  transition: transform 0.15s;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 24px rgba(13,110,253,0.13);
+}
+.card-title {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+}
+.share-links .btn {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+.nav-link {
+  font-weight: 500;
+  color: #0d6efd;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover, .nav-link.active {
+  background: #e0e7ff;
+  color: #6610f2;
+}
+.about-sidebar {
+  font-size: 1.1rem;
+  color: #333;
+}
+#profile-panel {
+  font-size: 1.1rem;
+  color: #333;
+}
+.site-footer {
+  background: #f4f7fa;
+  border-top: 1px solid #e0e7ef;
+  margin-top: 2rem;
+  border-radius: 1rem 1rem 0 0;
+}
 @media (max-width: 991px) {
   #about-col, #profile-col { display: none; }
-  #left-nav { width: 100%; border-right: none; }
-  #main-content { width: 100%; }
+  #left-nav { width: 100%; border-right: none; margin-bottom: 1rem; }
+  #main-content { width: 100%; margin-top: 0.5rem; }
 }
 @media (max-width: 767px) {
   .site-header h1 { font-size: 1.5rem; }
   .site-header .lead { font-size: 1rem; }
   .card { margin-bottom: 1rem; }
+  #main-content { padding: 1rem; }
 }
