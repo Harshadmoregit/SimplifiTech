@@ -9,24 +9,27 @@ body {
   color: #fff;
   box-shadow: 0 2px 12px rgba(13,110,253,0.08);
   border-radius: 0 0 1.5rem 1.5rem;
-  margin-bottom: 0.5rem;
-}
-.site-header .nav-link {
-  color: #fff !important;
-  font-weight: 500;
-  font-size: 1.1rem;
-  opacity: 0.92;
-  transition: color 0.15s;
-}
-.site-header .nav-link:hover, .site-header .nav-link.active {
-  color: #ffe082 !important;
-  text-decoration: underline;
-}
-.site-header .h4 {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 2rem;
-  letter-spacing: 1px;
   margin-bottom: 0;
+}
+.site-header img {
+  vertical-align: middle;
+}
+.main-nav {
+  border-radius: 0 0 1rem 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.04);
+}
+.main-nav .nav-link {
+  color: #0d6efd !important;
+  font-weight: 500;
+  font-size: 1.08rem;
+  opacity: 0.95;
+  transition: color 0.15s;
+  margin-right: 0.5rem;
+}
+.main-nav .nav-link:hover, .main-nav .nav-link.active {
+  color: #1976d2 !important;
+  text-decoration: underline;
 }
 #about-col, #profile-col {
   min-height: 100vh;
