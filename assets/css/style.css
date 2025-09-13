@@ -72,16 +72,30 @@ body {
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
 }
+/* Post links in sidebar */
 .nav-link {
   font-weight: 500;
   color: #0d6efd;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
   transition: background 0.15s, color 0.15s;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
 }
 .nav-link:hover, .nav-link.active {
   background: #e0e7ff;
   color: #6610f2;
+}
+
+/* Post content in iframe */
+#post-iframe {
+  font-size: 0.97rem;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  line-height: 1.7;
+  color: #222;
+  background: #f9fafe;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.04);
 }
 .about-sidebar {
   font-size: 1.1rem;
