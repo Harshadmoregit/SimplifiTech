@@ -9,6 +9,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Required for OIDC
+      pages: write    # Required to deploy to GitHub Pages
+      contents: read  # Required to checkout repo
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
