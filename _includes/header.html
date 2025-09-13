@@ -21,6 +21,11 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   if (window.self !== window.top) return; // Don't show in iframe
+  // Only show user info on index.html (not login.html)
+  if (window.location.pathname.endsWith('/login') || window.location.pathname.endsWith('/login.html')) {
+    document.getElementById('header-username-banner').style.display = 'none';
+    return;
+  }
   var session = localStorage.getItem('simplifitech_session');
   var banner = document.getElementById('header-username-banner');
   var usernameSpan = document.getElementById('header-username');

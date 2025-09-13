@@ -38,29 +38,29 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.href = '/login.html';
   }
   function showAlert(msg) {
-    alert(msg);
+  // alert(msg);
     var err = document.getElementById('login-error-page');
     if (err) err.textContent = msg;
   }
   function doLogin() {
     var username = document.getElementById('login-username-page').value;
     var password = document.getElementById('login-password-page').value;
-    showAlert('Attempting login for: ' + username);
+  // showAlert('Attempting login for: ' + username);
     fetch('Users.json').then(function(r) {
       if (!r.ok) throw new Error('Could not load Users.json');
       return r.json();
     }).then(function(users) {
-      showAlert('Loaded users: ' + JSON.stringify(users));
+  // showAlert('Loaded users: ' + JSON.stringify(users));
       var user = users.find(u => u.username === username && u.password === password);
-      showAlert('User found: ' + JSON.stringify(user));
+  // showAlert('User found: ' + JSON.stringify(user));
       if (user) {
-  localStorage.setItem('simplifitech_session', JSON.stringify(user));
-  window.location.href = '/SimplifiTech/index';
+        localStorage.setItem('simplifitech_session', JSON.stringify(user));
+        window.location.href = '/SimplifiTech/index';
       } else {
-        showAlert('Invalid credentials.');
+        // showAlert('Invalid credentials.');
       }
     }).catch(function(e) {
-      showAlert('Login error: ' + e.message);
+  // showAlert('Login error: ' + e.message);
     });
   }
   document.getElementById('login-form').onsubmit = function(e) {
