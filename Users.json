@@ -8,5 +8,30 @@
     "username": "admin@simplifitech.com",
     "password": "adminpass",
     "displayName": "Admin User"
+  },
+  {
+    "username": "alice@example.com",
+    "password": "alice123",
+    "displayName": "Alice Smith"
+  },
+  {
+    "username": "bob@example.com",
+    "password": "bob123",
+    "displayName": "Bob Johnson"
+  },
+  {
+    "username": "carol@example.com",
+    "password": "carol123",
+    "displayName": "Carol Lee"
+  },
+  {
+    "username": "dave@example.com",
+    "password": "dave123",
+    "displayName": "Dave Patel"
+  },
+  {
+    "username": "eve@example.com",
+    "password": "eve123",
+    "displayName": "Eve Kim"
   }
 ]

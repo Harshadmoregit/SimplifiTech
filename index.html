@@ -1,36 +1,52 @@
 ---
 layout: main
-title: SimplifiTech
+title: Home
 ---
-<div class="home-intro">
-  <p>Your source for insights on Application Modernization, Artificial Intelligence, and Cloud Migration.</p>
+<script>
+if (!localStorage.getItem('simplifitech_session')) {
+  window.location.href = '/login.html';
+}
+</script>
+<div class="container-fluid">
+  <div class="row">
+    <aside class="col-md-3 bg-light p-3" style="min-height:80vh; border-radius:1rem 0 0 1rem;">
+      <h5 class="mb-3">All Posts</h5>
+      <ul class="nav flex-column" id="post-list">
+        {% assign all_posts = site.posts | sort: 'date' | reverse %}
+        {% for post in all_posts %}
+        <li class="nav-item mb-2">
+          <a class="nav-link post-link" href="#" data-post-id="post-{{ forloop.index }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </aside>
+    <section class="col-md-9 p-4" id="post-content-area" style="min-height:80vh; border-radius:0 1rem 1rem 0; background:#fff;">
+      <div id="post-content-placeholder" class="text-muted">Select a post to view its content.</div>
+      {% assign all_posts = site.posts | sort: 'date' | reverse %}
+      {% for post in all_posts %}
+      <div id="post-{{ forloop.index }}" class="post-content d-none">
+        <h2>{{ post.title }}</h2>
+        <div class="mb-2"><span class="badge bg-primary">{{ post.category }}</span></div>
+        <div class="mb-3 text-muted">{{ post.date | date: "%B %d, %Y" }}</div>
+        {{ post.content }}
+      </div>
+      {% endfor %}
+    </section>
+  </div>
 </div>
-<div class="row">
-  <div class="col-md-4">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Application Modernization</h5>
-        <p class="card-text">Modernize your legacy apps for the cloud era.</p>
-        <a href="/categories/application-modernization.html" class="btn btn-primary">Explore</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Artificial Intelligence</h5>
-        <p class="card-text">Stay ahead with the latest in AI.</p>
-        <a href="/categories/artificial-intelligence.html" class="btn btn-primary">Explore</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Cloud Migration</h5>
-        <p class="card-text">Best practices for moving to the cloud.</p>
-        <a href="/categories/cloud-migration.html" class="btn btn-primary">Explore</a>
-      </div>
-    </div>
-  </div>
-</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.post-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var id = this.getAttribute('data-post-id');
+      document.querySelectorAll('.post-content').forEach(function(pc) { pc.classList.add('d-none'); });
+      var post = document.getElementById(id);
+      if (post) {
+        post.classList.remove('d-none');
+        document.getElementById('post-content-placeholder').style.display = 'none';
+      }
+    });
+  });
+});
+</script>

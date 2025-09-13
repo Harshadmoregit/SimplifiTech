@@ -13,11 +13,24 @@ title: Login
           <div id="login-error-page" class="text-danger mb-2"></div>
           <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
+        <hr>
+        <h5 class="mt-4">Create New User</h5>
+        <form id="signup-form">
+          <input id="signup-username-page" class="form-control mb-2" placeholder="Email">
+          <input id="signup-password-page" type="password" class="form-control mb-2" placeholder="Password">
+          <input id="signup-displayName-page" class="form-control mb-2" placeholder="Display Name">
+          <div id="signup-error-page" class="text-danger mb-2"></div>
+          <button type="submit" class="btn btn-success w-100">Sign Up</button>
+        </form>
       </div>
     </div>
   </div>
 </div>
 <script>
+// Redirect to /login.html if not logged in and not already on login page
+if (!localStorage.getItem('simplifitech_session') && window.location.pathname === '/') {
+  window.location.href = '/login.html';
+}
 document.getElementById('login-form').onsubmit = function(e) {
   e.preventDefault();
   var username = document.getElementById('login-username-page').value;
@@ -30,5 +43,21 @@ document.getElementById('login-form').onsubmit = function(e) {
   } else {
     document.getElementById('login-error-page').textContent = 'Invalid credentials.';
   }
+};
+document.getElementById('signup-form').onsubmit = function(e) {
+  e.preventDefault();
+  var username = document.getElementById('signup-username-page').value;
+  var password = document.getElementById('signup-password-page').value;
+  var displayName = document.getElementById('signup-displayName-page').value;
+  var users = JSON.parse(localStorage.getItem('simplifitech_users') || '[]');
+  if (users.find(u => u.username === username)) {
+    document.getElementById('signup-error-page').textContent = 'User already exists.';
+    return;
+  }
+  var user = { username, password, displayName };
+  users.push(user);
+  localStorage.setItem('simplifitech_users', JSON.stringify(users));
+  localStorage.setItem('simplifitech_session', JSON.stringify(user));
+  window.location.href = '/';
 };
 </script>
