@@ -2,6 +2,18 @@
 .bg-light-blue {
   background: linear-gradient(135deg, #e3f0ff 0%, #f0f7ff 100%) !important;
 }
+@media (max-width: 767px) {
+  aside.col-12 {
+    border-radius: 1rem 1rem 0 0 !important;
+  }
+  section.col-12 {
+    border-radius: 0 0 1rem 1rem !important;
+  }
+}
+/* Light blue background for sidebar and accordion */
+.bg-light-blue {
+  background: linear-gradient(135deg, #e3f0ff 0%, #f0f7ff 100%) !important;
+}
 .accordion-button.bg-light-blue {
   background: linear-gradient(90deg, #e3f0ff 0%, #f0f7ff 100%) !important;
   color: #1976d2;

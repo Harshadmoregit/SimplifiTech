@@ -73,18 +73,7 @@ title: Home
       <iframe id="post-iframe" src="" style="width:100%;height:75vh;border:none;display:none;"></iframe>
     </section>
   </div>
-/* Light blue background for sidebar and accordion */
-.bg-light-blue {
-  background: linear-gradient(135deg, #e3f0ff 0%, #f0f7ff 100%) !important;
-}
-@media (max-width: 767px) {
-  aside.col-12 {
-    border-radius: 1rem 1rem 0 0 !important;
-  }
-  section.col-12 {
-    border-radius: 0 0 1rem 1rem !important;
-  }
-}
+</div>
 </div>
 <script>
 function getPostUrlFromLocation() {
@@ -98,8 +87,8 @@ function getPostUrlFromLocation() {
 document.addEventListener('DOMContentLoaded', function() {
   var iframe = document.getElementById('post-iframe');
   var placeholder = document.getElementById('post-content-placeholder');
-  // Use event delegation for all .post-link clicks
-  document.getElementById('category-post-list').addEventListener('click', function(e) {
+  // Use event delegation for all .post-link clicks (works with accordion)
+  document.querySelector('.accordion').addEventListener('click', function(e) {
     var link = e.target.closest('.post-link');
     if (link) {
       e.preventDefault();
