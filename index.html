@@ -6,47 +6,85 @@ title: Home
 {% assign appmod_posts = site.categories['application-modernization'] | sort: 'date' | reverse %}
 {% assign ai_posts = site.categories['artificial-intelligence'] | sort: 'date' | reverse %}
 {% assign cloud_posts = site.categories['cloud-migration'] | sort: 'date' | reverse %}
-  <div class="row">
-    <aside class="col-md-3 bg-light p-3" style="min-height:80vh; border-radius:1rem 0 0 1rem;">
-      <h5 class="mb-3">All Posts</h5>
-      <div id="category-post-list">
-        <div class="mb-4">
-          <strong>Application Modernization</strong>
-          <ul class="nav flex-column ms-2">
-            {% for post in appmod_posts %}
-            <li class="nav-item mb-1">
-              <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="mb-4">
-          <strong>Artificial Intelligence</strong>
-          <ul class="nav flex-column ms-2">
-            {% for post in ai_posts %}
-            <li class="nav-item mb-1">
-              <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="mb-4">
-          <strong>Cloud Migration</strong>
-          <ul class="nav flex-column ms-2">
-            {% for post in cloud_posts %}
-            <li class="nav-item mb-1">
-              <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
+  <div class="row flex-lg-nowrap">
+    <aside class="col-12 col-md-4 col-lg-3 p-0 bg-light-blue shadow-sm" style="min-height:80vh; border-radius:1rem 0 0 1rem;">
+      <div class="p-3">
+        <h5 class="mb-3 text-primary fw-bold">All Posts</h5>
+        <div class="accordion" id="categoryAccordion">
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingAppMod">
+              <button class="accordion-button bg-light-blue collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAppMod" aria-expanded="true" aria-controls="collapseAppMod">
+                Application Modernization
+              </button>
+            </h2>
+            <div id="collapseAppMod" class="accordion-collapse collapse show" aria-labelledby="headingAppMod" data-bs-parent="#categoryAccordion">
+              <div class="accordion-body p-0">
+                <ul class="nav flex-column ms-2 mb-2">
+                  {% for post in appmod_posts %}
+                  <li class="nav-item mb-1">
+                    <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingAI">
+              <button class="accordion-button bg-light-blue collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAI" aria-expanded="false" aria-controls="collapseAI">
+                Artificial Intelligence
+              </button>
+            </h2>
+            <div id="collapseAI" class="accordion-collapse collapse" aria-labelledby="headingAI" data-bs-parent="#categoryAccordion">
+              <div class="accordion-body p-0">
+                <ul class="nav flex-column ms-2 mb-2">
+                  {% for post in ai_posts %}
+                  <li class="nav-item mb-1">
+                    <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingCloud">
+              <button class="accordion-button bg-light-blue collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCloud" aria-expanded="false" aria-controls="collapseCloud">
+                Cloud Migration
+              </button>
+            </h2>
+            <div id="collapseCloud" class="accordion-collapse collapse" aria-labelledby="headingCloud" data-bs-parent="#categoryAccordion">
+              <div class="accordion-body p-0">
+                <ul class="nav flex-column ms-2 mb-2">
+                  {% for post in cloud_posts %}
+                  <li class="nav-item mb-1">
+                    <a class="nav-link post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </aside>
-    <section class="col-md-9 p-4" id="post-content-area" style="min-height:80vh; border-radius:0 1rem 1rem 0; background:#fff;">
+    <section class="col-12 col-md-8 col-lg-9 p-4" id="post-content-area" style="min-height:80vh; border-radius:0 1rem 1rem 0; background:#fff;">
       <div id="post-content-placeholder" class="text-muted">Select a post to view its content.</div>
       <iframe id="post-iframe" src="" style="width:100%;height:75vh;border:none;display:none;"></iframe>
     </section>
   </div>
+/* Light blue background for sidebar and accordion */
+.bg-light-blue {
+  background: linear-gradient(135deg, #e3f0ff 0%, #f0f7ff 100%) !important;
+}
+@media (max-width: 767px) {
+  aside.col-12 {
+    border-radius: 1rem 1rem 0 0 !important;
+  }
+  section.col-12 {
+    border-radius: 0 0 1rem 1rem !important;
+  }
+}
 </div>
 <script>
 function getPostUrlFromLocation() {

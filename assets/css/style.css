@@ -1,3 +1,37 @@
+/* Light blue background for sidebar and accordion */
+.bg-light-blue {
+  background: linear-gradient(135deg, #e3f0ff 0%, #f0f7ff 100%) !important;
+}
+.accordion-button.bg-light-blue {
+  background: linear-gradient(90deg, #e3f0ff 0%, #f0f7ff 100%) !important;
+  color: #1976d2;
+  font-weight: 600;
+  font-size: 1.08rem;
+  border: none;
+  box-shadow: none;
+}
+.accordion-button.bg-light-blue:not(.collapsed) {
+  color: #0d6efd;
+  background: #e0e7ff !important;
+}
+.accordion-item {
+  border-radius: 0.75rem;
+  border: none;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.04);
+  margin-bottom: 0.5rem;
+}
+.accordion-body {
+  background: transparent;
+}
+@media (max-width: 991px) {
+  aside.col-12.col-md-4.col-lg-3 {
+    border-radius: 1rem 1rem 0 0 !important;
+    margin-bottom: 1rem;
+  }
+  section.col-12.col-md-8.col-lg-9 {
+    border-radius: 0 0 1rem 1rem !important;
+  }
+}
 body {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
   font-family: 'Roboto', Arial, sans-serif;
